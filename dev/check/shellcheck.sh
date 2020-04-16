@@ -10,4 +10,4 @@ SHELL_SCRIPTS=()
 
 while IFS='' read -r line; do SHELL_SCRIPTS+=("$line"); done < <(shfmt -f .)
 
-shellcheck --color=always "${SHELL_SCRIPTS[@]}"
+shellcheck -x --color=always "${SHELL_SCRIPTS[@]}"
