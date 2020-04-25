@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/sourcegraph/sourcegraph/internal/errcode"
+	"github.com/sourcegraph/sourcegraph/internal/repoupdater"
 )
 
 func TestHTTP(t *testing.T) {
@@ -14,6 +15,7 @@ func TestHTTP(t *testing.T) {
 		err  error
 		want int
 	}{
+		{repoupdater.ErrNotFound, http.StatusInternalServerError},
 		{os.ErrNotExist, http.StatusNotFound},
 		{&notFoundErr{}, http.StatusNotFound},
 		{nil, http.StatusOK},
