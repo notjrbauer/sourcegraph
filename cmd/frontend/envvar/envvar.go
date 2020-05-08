@@ -7,7 +7,7 @@ import (
 	"github.com/sourcegraph/sourcegraph/internal/env"
 )
 
-var sourcegraphDotComMode, _ = strconv.ParseBool(env.Get("SOURCEGRAPHDOTCOM_MODE", "false", "run as Sourcegraph.com, with add'l marketing and redirects"))
+var sourcegraphDotComMode, _ = strconv.ParseBool(env.Get("SOURCEGRAPHDOTCOM_MODE", "true", "run as Sourcegraph.com, with add'l marketing and redirects"))
 
 // SourcegraphDotComMode is true if this server is running Sourcegraph.com (solely by checking the
 // SOURCEGRAPHDOTCOM_MODE env var). Sourcegraph.com shows add'l marketing and sets up some add'l

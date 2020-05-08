@@ -74,7 +74,7 @@ func (s *repos) GetByName(ctx context.Context, name api.RepoName) (_ *types.Repo
 	case shouldRedirect(name):
 		return nil, ErrRepoSeeOther{RedirectURL: (&url.URL{
 			Scheme:   "https",
-			Host:     "sourcegraph.com",
+			Host:     "sourcegraph.test:3443",
 			Path:     string(name),
 			RawQuery: url.Values{"utm_source": []string{conf.DeployType()}}.Encode(),
 		}).String()}
@@ -84,8 +84,7 @@ func (s *repos) GetByName(ctx context.Context, name api.RepoName) (_ *types.Repo
 }
 
 func shouldRedirect(name api.RepoName) bool {
-	return !conf.Get().DisablePublicRepoRedirects &&
-		extsvc.CodeHostOf(name, extsvc.PublicCodeHosts...) != nil
+	return extsvc.CodeHostOf(name, extsvc.PublicCodeHosts...) != nil
 }
 
 // Add adds the repository with the given name to the database by calling
