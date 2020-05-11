@@ -1502,7 +1502,8 @@ func (r *searchResolver) doResults(ctx context.Context, forceOnlyResultType stri
 					commonMu.Unlock()
 				}
 			})
-		case "file", "path":
+		case "file", "path", "content":
+
 			if searchedFileContentsOrPaths {
 				// type:file and type:path use same searchFilesInRepos, so don't call 2x.
 				continue
